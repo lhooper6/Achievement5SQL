@@ -7,7 +7,7 @@ Note: Any visualizations within the public link are titled with a 3.10.
 ## Data
 For this project, I used Rockbuster Data included in the course.  The data included 3MB of files containing inventory, cusotomers, and payments. 
 
-##Tools
+## Tools
 For this project I used PostgreSQL
 
 ## SQL
