@@ -11,4 +11,4 @@ For this project, I used Rockbuster Data included in the course.  The data inclu
 For this project I used PostgreSQL
 
 ## SQL
-The SQL sattements can be viewed in each created file.  Each file contains the main statement used followed by the task number for the course. 
+The SQL statements can be viewed in each created file.  Each file contains the main statement used followed by the task number for the course. 
