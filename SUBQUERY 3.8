@@ -3,4 +3,23 @@ Write a subquery and query:
 
 SELECT AVG(total_amount_paid.total_amount_paid) AS average
 FROM
-(
+(SELECT B.customer_id, B.first_name, B.last_name, D.city, E.country, SUM(A.amount) AS total_amount_paid
+FROM payment A
+INNER JOIN customer B ON A.customer_id = B.customer_id
+INNER JOIN address C ON B.address_id = C.address_id
+INNER JOIN city D ON C.city_id = D.city_id
+INNER JOIN country E ON D.country_ID = E.country_ID
+WHERE D. city IN ('Aurora', 'Pingxiang', 'Sivas', Dhule (Dhulia)', 'Kurashiki', 'Xintai', 'Adoni', 'Celaya', 'Nezahualcyotl', 'Atlixco')
+GROUP BY B.customer-id, B.first_nam,e B.last_name, D.city, E.country
+ORDER BY SUM(A.amount) DESC
+LIMIT 5) AS total_amount_paid;
+
+Find out how many of the top 5 customers are based within each country:
+
+SELECT DISTINCT(D.country), COUNT(DISTINCT A.customer_id) AS total_customer_count,
+COUNT(DISTINCT D.country) AS top_csutomer_count
+FROM customer A
+INNER JOIN address B ON A.address_id = B.address_id
+INNER JOIN city C ON B.city_id = C.city_id
+INNER JOIN country D ON C.country_id = D.country_id
+LEFT JOIN (
