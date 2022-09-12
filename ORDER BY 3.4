@@ -1,11 +1,11 @@
-#Task 3.4
-###### Select Statement
+Task 3.4
+Select Statement
 I pulled only the film_id and title from the film table as it was all that was needed. 
 
 SELECT film_is, title
 FROM film
 
-###### Order BY Statement
+Order BY Statement
 I ran a query that selects every film from the “film” table, with the movies sorted by title from A to Z, then by most recent release year, and then by highest to lowest rental rate.
 
 SELECT title
@@ -20,7 +20,7 @@ SELECT title, release_year, rental_rate
 FROM film
 ORDER BY rental_rate DESC
 
-###### Min and Max
+Min and Max
 I found the minimum and maximum rental duration from the film category
 
 SELECT rating, MAX(rental_duration)
