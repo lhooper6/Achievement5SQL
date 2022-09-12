@@ -1,0 +1,37 @@
+Task 3.7
+Write a query showing the top ten customers for Rockbuster based on customer numbers:
+
+SELECT D.country, COUNT(customer_id) AS customer_count
+FROM customer A
+INNER JOIN address B ON A.address_id = B.address_id
+INNER JOIN city C ON B.country_ID = D> country_ID
+GROUP BY country 
+ORDER BY COUNT(customer_id) DESC
+LIMIT 10
+
+Write a query to find the top 10 cities within the top 10 countries identified:
+
+SELECT C.city, D.country, COUNT(customer_id) AS customer_count
+FROM customer A
+INNER JOIN address B ON A.address_id = B.address_id
+INNER JOIN city C ON B.city_id = C.city_id
+INNER JOIN country D ON C.country_id = D.country_id
+WHERE D.country IN ('India', 'China', 'United States', 'Japan', 'Mexico', 'Brazil', 'Russian Federation', 'Phillippines', 'Turkey', 'Indonesia')
+GROUP BY C.city, D.country
+ORDER BY COUNT(customer_id) DESC
+LIMIT 10
+
+Write a query to find the top 5 customers in the top 10 cities who have paid the highest total amounts to Rockbuster:
+
+SELECT B.customer_id, B.first_name, B.last_name, D.city, E.country, SUM(A.amount) AS total_payment_amount
+FROM payment A
+INNER JOIN customer B ON A.customer_id = B.customer_id
+INNER JOIN address C ON B.address_id = C.address_id
+INNER JOIN city D ON C.city_id = D.city_id
+INNER JOIN country E ON D.country_ID = E.country_ID
+WHERE D. city IN ('Aurora', 'Pingxiang', 'Sivas', Dhule (Dhulia)', 'Kurashiki', 'Xintai', 'Adoni', 'Celaya', 'Nezahualcyotl', 'Atlixco')
+GROUP BY B.customer-id, B.first_nam,e B.last_name, D.city, E.country
+ORDER BY SUM(A.amount) DESC
+LIMIT 5
+
+
