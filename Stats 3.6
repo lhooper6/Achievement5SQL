@@ -1,0 +1,79 @@
+Task 3.6 
+Check film table for duplicate, non-uniform, and missing data:
+Duplicate: 
+
+SELECT title,
+        release_year,
+        language_id,
+        rental_duration,
+        COUNT(*)
+FROM film
+GROUP BY title,
+          release_year,
+          language_id,
+          rental_duration
+HAVING COUNT(*) >1; --no result means we have no duplicates
+
+NON-uniform:
+
+SELECT rating
+FROM film
+GROUP BY rating
+
+SELECT release_year
+FROM film
+GROUP BY release_year
+
+Missing: 
+
+SELECT COUNT(film_id) AS count_film_id, COUNT(title) AS count_title, 
+COUNT(rental_duration) AS count_rental_duration, 
+COUNT(rental_rate) AS count_rental_rate, COUNT(*) AS count_number_rows
+FROM film
+GROUP BY release_year
+
+Check customer table for duplicate, non-uniform, and missing data:
+Duplicate: 
+
+SELECT customer_id, store_id, address_id, create_date, COUNT(*)
+FROM customer
+GROUP BY customer_id, store_id, address_id, create_date
+HAVING COUNT(*) >1;
+
+NON-Uniform:
+
+SELECT create_date
+FROM customer
+GROUP BY create_date
+
+Missing:
+
+SELECT COUNT(customer_id) AS count_customer_id, COUNT(store_id) AS count_store_id, 
+COUNT(create_date) AS count_create_date, COUNT(*)
+FROM customer
+GROUP BY create_date
+
+Find Descriptive statistics for both tables
+Film Table:
+
+SELECT MIN(rental_rate) AS min_rent, 
+MAx(rental_rate AS max_rent,
+AVG(rental_rate) AS avg_rent,
+COUNT(rental_rate) AS count_rent_values, 
+MIN(rental_duration) AS min_rental_duration, MAX(replacement_cost) AS max_replacement_cost, 
+AVG(replacement_cost) AS avg_replaceemnt_cost, COUNT(*) AS count_rows
+FROM film;
+
+SELECT mode() WITHIN GROUP (ORDER BY film_id)
+AS modal_film_id, mode() WITHIN GROUP (ORDER BY title) AS modal_title, 
+mode() WITHIN GROUP (ORDER BY language_id) AS modal_language_id
+FROM film;
+
+Customer Table:
+
+SELECT mode() WITHIN GROUP (ORDER BY customer_id)
+AS modal_cusotmer, mode() WITHIN GROUP (ORDER BY store_id) AS modal_store,
+mode() WITHIN GROUP (ORDER BY first_name) AS modal_first_name,
+mode() WITHIN GROUP (ORDER BY last_name) AS modal_last_name,
+mode() WITHIN GROUP (ORDER BY address_id) AS modal_address
+FROM customer;
