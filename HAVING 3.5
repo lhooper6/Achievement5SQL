@@ -1,0 +1,68 @@
+Task 3.5
+Return lists of queries that meet certain conditions.
+
+Film title contains the word uptown in any position:
+
+SELECT film_id, title, description
+FROM film
+WHERE title LIKE '%Uptown%'
+
+Film length is more than 120 minutes and rental rate is more than 2.99:
+
+SELECT film_id, title, description
+FROM film
+WHERE length >120 AND rental_rate > 2.99
+
+Rental duration is between 3 and 7 days (where 3 and 7 aren’t inclusive):
+
+SELECT film_id, title, description
+FROM film
+WHERE rental_duration BETWEEN 4 AND 6
+
+Film replacement cost is less than 14.99:
+
+SELECT film_id, title, description
+FROM film
+WHERE replacement_cost <14.99
+
+Film rating is either PG or G:
+
+SELECT film_id, title, description
+FROM film
+WHERE rating ='G' OR rating ='PG'
+
+Count the movies in the previous list:
+
+SELECT count(film_id)
+FROM film
+WHERE rating ='G' OR rating ='PG'
+
+Find the Average rental rate in the previous list:
+
+SELECT AVG(rental_rate)
+FROM film
+WHERE rating ='G' OR rating ='PG'
+
+Find the minimum and maximum rental duration of the previous list:
+
+SELECT MAX(rental_duration), MIN(rental_duration)
+FROM film
+WHERE rating ='G' OR rating ='PG'
+
+Create aggregate names for these columns:
+
+SELECT rating,
+COUNT(film_id) AS count_of_movies
+FROM film
+GROUP BY rating
+HAVING rating='G' OR rating='PG'
+
+SELECT rating, AVG(rental_rate) AS average_movie_rental_rate
+FROM film
+GROUP BY rating
+HAVING rating='G' OR rating='PG'
+
+SELECT rating, MAX(rental_duration) AS maximum_rental_duration, MIN(rental_duration) AS minimum_rental_duration
+FROM film
+GROUP BY rating
+HAVING rating='G' OR rating='PG'
